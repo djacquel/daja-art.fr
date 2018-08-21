@@ -1,26 +1,20 @@
 # Welcome to Jekyll!
 #
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# This is a basic jekyll with no theme hidden somewhere
+# everything is ready to hack
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+title: Bare Jekyll
+description: >-
+  This is a basic jekyll with no theme hidden somewhere.
+  Everything is ready to hack !
+
+language: en
+timezone: Europe/Paris # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+email: your-email@example.com
 twitter_username: bob
 github_username:  bob
 
@@ -28,5 +22,61 @@ github_username:  bob
 permalink: pretty
 
 kramdown:
-  # instruct kramdown to parse inside html block elements like p, header, lists, ...
-  parse_block_html: true
+#   auto_ids: true
+#   footnote_nr: 1
+#   entity_output: as_char
+#   toc_levels: 1..6
+#   smart_quotes: lsquo,rsquo,ldquo,rdquo
+#   use_coderay: false
+    parse_block_html: true # instruct kramdown to parse inside html block elements like p, header, lists, ...
+    parse_span_html: true
+#   coderay:
+#     coderay_wrap: div
+#     coderay_line_numbers: inline
+#     coderay_line_numbers_start: 1
+#     coderay_tab_width: 4
+#     coderay_bold_every: 10
+#     coderay_css: style
+
+excerpt_separator: "<!--more-->"
+
+sass:
+  # loading path from site root
+  # default to _sass
+  # sass_dir: node_modules/bootstrap/scss
+
+  # multiple load paths
+  # doesn't work in safe mode (github pages)
+  # load_paths:
+  #   - path1
+  #   - path2
+
+  # style : nested (default), compact, compressed, expanded
+  #         :nested, :compact, :compressed, :expanded also works
+  # see http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: nested
+
+defaults:
+  -
+    scope:
+      type: posts
+    values:
+      layout: post
+
+  - { scope: { type: pages }, values: { layout: page } }
+
+
+
+
+plugins:
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# debug liquid unused variables and filters
+#  + error management
+liquid:
+  strict_variables: false # default: false
+  strict_filters: true # default: false
+  error_mode: strict # default: warn
