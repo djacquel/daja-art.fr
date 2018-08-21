@@ -6,3 +6,6 @@ Just something to simply start hacking.
     cd bare-jekyll
     bundle
     bundle exec jekyll serve
+
+And that's it !
+
