@@ -83,6 +83,7 @@ def create_elements( type = 'post', numberOf = 1, clean = false, collectionName 
     case type
       when "post"
         tags = tagsAsStr
+        front["tags"] = tags
         front["category"] = $categoriesPool.sample(1).first['slug']
       when "page"
         #
