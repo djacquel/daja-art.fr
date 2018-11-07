@@ -1,22 +1,17 @@
-# Welcome to Jekyll!
-#
-# This is a basic jekyll with no theme hidden somewhere
-# everything is ready to hack
+# daja-art.fr setup
 
-title: Bare Jekyll
-description: >-
-  This is a basic jekyll with no theme hidden somewhere.
-  Everything is ready to hack !
+title: DaJa Art
+description: David Jacquel - Photographie
 
-language: en
-timezone: Europe/Paris # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+language: fr
+timezone: Europe/Paris
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
-email: your-email@example.com
-twitter_username: bob
-github_username:  bob
+email: dj[AT]daja-art[POINT]fr
+twitter_username: djacquel
+github_username:  djacquel
 
 # Build settings
 permalink: pretty
@@ -57,20 +52,11 @@ sass:
   style: nested
 
 defaults:
-  -
-    scope:
-      type: posts
-    values:
-      layout: post
-
+  - { scope: { type: posts }, values: { layout: post } }
   - { scope: { type: pages }, values: { layout: page } }
-
-
-
 
 plugins:
   - jekyll-paginate
-  - jekyll-redirect-from
   - jekyll-seo-tag
   - jekyll-sitemap
 

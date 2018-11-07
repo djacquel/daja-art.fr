@@ -1,23 +1,12 @@
 ---
-title: Home
+title: Accueil
 ---
 <div class="home">
+<h1>Site en construction</h1>
+<p>Quelques photos en attendant que ce site soit terminé.</p>
 
-  <h1 class="page-heading">Posts</h1>
-
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+{% include photo-figure.html photoUrl="P2930232-1024x684.JPG" caption="Clown - Michel Boussard" %}
+{% include photo-figure.html photoUrl="P2940664-1024x684.JPG" caption="Vaches dans le Rognon - Abbaye de la Crète - Haute-Marne" %}
 
 </div>
 
