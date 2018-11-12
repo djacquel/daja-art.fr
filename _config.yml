@@ -1,6 +1,6 @@
 # daja-art.fr setup
 
-title: DaJa Art
+title: David Jacquel - Photographie
 description: David Jacquel - Photographie
 
 language: fr
@@ -8,7 +8,7 @@ timezone: Europe/Paris
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-
+author: David Jacquel
 email: dj[AT]daja-art[POINT]fr
 twitter_username: djacquel
 github_username:  djacquel
@@ -38,8 +38,7 @@ excerpt_separator: "<!--more-->"
 sass:
   # loading path from site root
   # default to _sass
-  # sass_dir: node_modules/bootstrap/scss
-
+  sass_dir: node_modules/spectre.css/src
   # multiple load paths
   # doesn't work in safe mode (github pages)
   # load_paths:
@@ -66,3 +65,6 @@ liquid:
   strict_variables: false # default: false
   strict_filters: true # default: false
   error_mode: strict # default: warn
+
+# add comment at begining and end of includes
+comment_includes: true

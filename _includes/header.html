@@ -1,12 +1,14 @@
-<header class="site-header" role="banner">
-  <div class="wrapper">
-    {% assign default_paths = site.pages | map: "path" %}
-    {% assign page_paths = site.header_pages | default: default_paths %}
-    <a class="site-title" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
-    {% if page_paths %}
-      <nav class="site-nav">
-        <a class="page-link" href="{{ site.baseurl }}/a-propos/">A propos</a>
-      </nav>
-    {% endif %}
-  </div>
+
+<header class="navbar">
+  <section class=>
+    <a href="{{ site.baseurl }}/" class="logo">
+      <img class="signature" src="{{ site.baseurl }}/img/20170727-logo-djacquel-optimised-omgsvg.svg" alt="Signature {{ site.title }}">
+    </a>
+    <span class="site-subtitle">
+      Photographie
+    </span>
+  </section>
+  <section class="navbar-section">
+    <a href="{{ site.baseurl }}/a-propos/" class="btn btn-link">A propos</a>
+  </section>
 </header>
