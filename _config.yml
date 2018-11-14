@@ -83,10 +83,11 @@ exclude:
 
 
 photoMetadata:
-  default_metadatas:
-    author: 'David jacquel'
-    copyright: 'Copyright 2018 David Jacquel'
-
-  prompted_metadatas:
-    - title
-    - location
+  enabled: true
+  # pending_images_path: path/to/image
+  set_copyright: false
+  set_author: false
+  author: David Jacquel
+  # prompted_metadatas:
+  #   - title
+  #   - location

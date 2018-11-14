@@ -2,7 +2,7 @@ module Jekyll
 
   # uses mini_exiftool https://github.com/janfri/mini_exiftool
 
-  class PhotoManager
+  class Photo
 
     require 'mini_exiftool'
     require 'highline'
@@ -12,15 +12,24 @@ module Jekyll
       @photo = MiniExiftool.new photoPath
       @config = config
       @cli = HighLine.new
-      Jekyll.logger.info "PhotoManager:", "initialized for #{fileName}"
+      Jekyll.logger.info "Photo:", "initialized for #{fileName}"
     end
 
     # sets default metadatas defined in configuration
     def setDefaultMetadatas()
-      datas = @config['default_metadatas']
-      datas.each do |data|
-        @photo[data[0]] = data[1]
+
+      if @config['set_author']
+        @photo.author = @config['author']
       end
+
+      if @config['set_copyright']
+        photoDate = @photo.createdate
+        photoYear = photoDate.strftime("%Y")
+
+        copyright_string = "Copyright #{photoYear} #{@config['author']}"
+        @photo.copyright = copyright_string
+      end
+
     end
 
     # sets metadatas that needs user interaction
@@ -28,7 +37,9 @@ module Jekyll
       datas = @config['prompted_metadatas']
 
       datas.each do |data|
-        showPhoto = yesOrNo('Would you like to see this picture in order to set ' + data + ' ?')
+        showPhotoMessage = 'Would you like to see this picture in order to set ' + data + ' ?'
+        showPhoto = yesOrNo(showPhotoMessage, :no)
+
         if showPhoto == true
           commandResult = showPhoto(@photo.filename)
         end
@@ -51,15 +62,18 @@ module Jekyll
       end
     end
 
-    def yesOrNo(message)
+    def yesOrNo(message, defaultAnswer= :yes)
       @cli.choose do |menu|
         menu.prompt = message
         menu.choice(:yes) { true }
         menu.choices(:no) { false }
-        menu.default = :yes
+        menu.default = defaultAnswer
       end
     end
 
+    # launch a system command to show photo in current image viewer
+    # UBUNTU ONLY ! or maybe linux
+    # NOT WIN NOR MAC
     def showPhoto(path)
       cmd = 'xdg-open ' + path
       Jekyll.logger.info "PhotoManager:", "system command #{cmd}"
@@ -67,15 +81,19 @@ module Jekyll
     end
 
     def endsEdit
-      @photo.save
-      datas = @config['default_metadatas']
-      datas.each do |data|
-        puts "edited : photo #{data[0]} >> #{@photo[data[0]]}"
+      changed = @photo.changed_tags
+
+      if changed.empty?
+        Jekyll.logger.info "Nothing changed skipping save"
+      else
+        changed.each do |tag|
+          Jekyll.logger.info "Photo:", "changed for #{tag} to #{@photo[tag]}"
+        end
+
+        @photo.save
+        Jekyll.logger.info "Photo:", "changes saved"
       end
-      prompted = @config['prompted_metadatas']
-      prompted.each do |data|
-        puts "edited : photo #{data} >> #{@photo[data]}"
-      end
+
     end
 
   end

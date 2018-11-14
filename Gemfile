@@ -12,6 +12,9 @@ gem 'jekyll-sitemap'
 
 # required by photo manager
 
-gem 'rake'
+# exif xmp manipulation
 gem 'mini_exiftool'
+
+# prompt used by photo manager plugin
+# https://github.com/JEG2/highline
 gem 'highline'

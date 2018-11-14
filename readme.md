@@ -1,4 +1,6 @@
 
+# WARNING ! this is absolutely not supposed to work on Win nor Mac because of some ubuntu specific system calls
+
 Website for https://daja-art.fr
 
     git clone git@github.com:djacquel/daja-art.fr.git
@@ -8,8 +10,9 @@ Website for https://daja-art.fr
 
 Dependencies :
 
-# for mini_exiftool https://github.com/janfri/mini_exiftool
-sudo apt install libimage-exiftool-perl
+ - for mini_exiftool https://github.com/janfri/mini_exiftool
+   additional command :
+    `sudo apt install libimage-exiftool-perl`
 
-# for photo manager
-prompt : https://github.com/JEG2/highline
+ - for photo manager plugin (see Gemfile)
+
