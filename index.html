@@ -2,9 +2,15 @@
 title: Accueil
 ---
 <div class="columns">
+
+  <div class="column col-12">
+
+    <div id="lightgallery">
 {% for post in site.posts %}
-  <div class="column col-6 col-xl-6 col-lg-6 col-md-12">
-    {% include photo/figure.html img_src= post.img_src img_caption= post.title %}
-  </div>
+
+    {% include photo/figure-lightgallery.html img_src= post.img_src img_caption= post.title %}
+
 {% endfor %}
+</div>
+  </div>
 </div>

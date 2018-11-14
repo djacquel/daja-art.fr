@@ -1,2 +1,2 @@
 
-console.log("yolo");
+lightGallery(document.getElementById('lightgallery'));
