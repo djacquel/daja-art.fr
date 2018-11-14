@@ -8,3 +8,10 @@ gem 'jekyll-sitemap'
 # if you want to locally test your site
 # against github page configuration
 # gem 'github-pages'
+
+
+# required by photo manager
+
+gem 'rake'
+gem 'mini_exiftool'
+gem 'highline'

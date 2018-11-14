@@ -38,12 +38,12 @@ excerpt_separator: "<!--more-->"
 sass:
   # loading path from site root
   # default to _sass
-  sass_dir: node_modules/spectre.css/src
+  # sass_dir: path/here
   # multiple load paths
   # doesn't work in safe mode (github pages)
-  # load_paths:
-  #   - path1
-  #   - path2
+  load_paths:
+    - node_modules/spectre.css/src
+    - node_modules/lightgallery.js/src
 
   # style : nested (default), compact, compressed, expanded
   #         :nested, :compact, :compressed, :expanded also works
@@ -68,3 +68,25 @@ liquid:
 
 # add comment at begining and end of includes
 comment_includes: true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
+  - package.json
+  - Rakefile
+  - readme.md
+  - yarn.lock
+  - node_modules/spectre.css
+  - node_modules/lightgallery.js/lib
+  - node_modules/lightgallery.js/src
+
+
+photoMetadata:
+  default_metadatas:
+    author: 'David jacquel'
+    copyright: 'Copyright 2018 David Jacquel'
+
+  prompted_metadatas:
+    - title
+    - location
