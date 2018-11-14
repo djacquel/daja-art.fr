@@ -1,23 +1,20 @@
 module Jekyll
 
-  # uses mini_exiftool https://github.com/janfri/mini_exiftool
-
-  class Photo
+  class PhotoMetadatas
 
     require 'mini_exiftool'
     require 'highline'
 
-    def initialize(fileName, path, config)
-      photoPath = File.join(path, fileName)
+    def initialize(photoPath, config)
+      watermarkPath = File.join()
       @photo = MiniExiftool.new photoPath
       @config = config
       @cli = HighLine.new
-      Jekyll.logger.info "Photo:", "initialized for #{fileName}"
+      Jekyll.logger.info "Photo metadatas:", "initialized for #{photoPath}"
     end
 
     # sets default metadatas defined in configuration
     def setDefaultMetadatas()
-
       if @config['set_author']
         @photo.author = @config['author']
       end
@@ -29,7 +26,6 @@ module Jekyll
         copyright_string = "Copyright #{photoYear} #{@config['author']}"
         @photo.copyright = copyright_string
       end
-
     end
 
     # sets metadatas that needs user interaction
@@ -62,6 +58,23 @@ module Jekyll
       end
     end
 
+    # recap changed tags and save photo
+    def endsMetadatasEdit
+      changed = @photo.changed_tags
+
+      if changed.empty?
+        Jekyll.logger.info "Nothing changed skipping save"
+      else
+        changed.each do |tag|
+          Jekyll.logger.info "Photo metadatas:", "changed for #{tag} to #{@photo[tag]}"
+        end
+
+        @photo.save
+
+        Jekyll.logger.info "Photo metadatas:", "changes saved"
+      end
+    end
+
     def yesOrNo(message, defaultAnswer= :yes)
       @cli.choose do |menu|
         menu.prompt = message
@@ -76,24 +89,8 @@ module Jekyll
     # NOT WIN NOR MAC
     def showPhoto(path)
       cmd = 'xdg-open ' + path
-      Jekyll.logger.info "PhotoManager:", "system command #{cmd}"
+      Jekyll.logger.info "Photo metadatas:", "system command #{cmd}"
       wasGood = system( cmd )
-    end
-
-    def endsEdit
-      changed = @photo.changed_tags
-
-      if changed.empty?
-        Jekyll.logger.info "Nothing changed skipping save"
-      else
-        changed.each do |tag|
-          Jekyll.logger.info "Photo:", "changed for #{tag} to #{@photo[tag]}"
-        end
-
-        @photo.save
-        Jekyll.logger.info "Photo:", "changes saved"
-      end
-
     end
 
   end

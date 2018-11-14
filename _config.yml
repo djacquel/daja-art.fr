@@ -82,12 +82,19 @@ exclude:
   - node_modules/lightgallery.js/src
 
 
-photoMetadata:
+photo_worflow_manager :
   enabled: true
   # pending_images_path: path/to/image
-  set_copyright: false
-  set_author: false
-  author: David Jacquel
-  # prompted_metadatas:
-  #   - title
-  #   - location
+
+  photoMetadata:
+    enabled: false
+    set_copyright: false
+    set_author: false
+    author: David Jacquel
+    prompted_metadatas:
+     - title
+    # - location
+
+  watermark:
+    enabled: true
+    watermark_file: /img/watermark.svg

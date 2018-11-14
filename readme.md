@@ -14,5 +14,9 @@ Dependencies :
    additional command :
     `sudo apt install libimage-exiftool-perl`
 
+ - for minimagick https://github.com/minimagick/minimagick
+   additional command :
+    `sudo apt install imagemagick graphicsmagick`
+
  - for photo manager plugin (see Gemfile)
 
