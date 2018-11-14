@@ -3,6 +3,6 @@
 
 Jekyll::Hooks.register :documents, :post_init do |document|
 
-  puts "Firing :documents, :post_init from 0040-hook-documents-post-init.rb"
+  puts "Firing :documents, :post_init from : " + File.basename(__FILE__)"
 
 end
