@@ -40,17 +40,15 @@ def inRootPath?(root, targetFullPath)
   inRootPath
 end
 
-def get_stdin(message)
-  print message
-  STDIN.gets.chomp
-end
+def create_file(filename, front, content = "<h1>Toto</h1>")
+  d2( "Creating new file: #{filename}" )
 
-def ask(message, valid_options=nil)
-  if valid_options
-    answer = get_stdin("#{message} #{valid_options.to_s.gsub(/"/, '').gsub(/, /,'/')} ") while !valid_options.include?(answer)
-  else
-    answer = get_stdin(message)
+  open(filename, 'w') do |f|
+    f.puts "---"
+    front.each{ |key,value| f.puts "#{key}: #{value}" }
+    f.puts "---"
+    f.puts ""
+    f.puts content
   end
-  answer
 end
 

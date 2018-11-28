@@ -2,24 +2,13 @@
 title: A propos
 ---
 
-Premier appareil photo à 8 ans.
-Pocket kodack
+Premier reflex à 11 ans, alors que je vivais en Afrique.
 
-A 11 ans j'ai eu mon premier reflex, un Minolta XE5, équipé d'un 50 et d'un 200mm.
+A 13 ans, je passais de longues soirées dans les labos photos à tirer mes noirs et blancs et je gagnais mon premier concours photo sur le sujet du Bonheur.
 
-A 13 ans je tirais mes photos noir et blanc lors de longues soirée à la lumière rouge.
+Regarder, donner à voir, figer ce temps qui passe.
 
-Je gagnais mon premier concours photo sur le sujet du Bonheur.
+Plus de quarante ans maintenant que je photographie avec avidité ce monde qui est le notre.
 
-Je n'ai jamais cessé de shooter.
+A plus que jamais je pense qu'il est important de témoigner, pour que le futur n'oublie pas.
 
-Jusqu'en 2017 ou je gagne un nouveau 1er prix
-?? concours photos amis de buxieres
-
-Cette année fut l'occasion de montrer ma photographie et de me voir proposer ma première exposition par le Syndicat des Retraités CGT de Chaumont.
-
-Expo Chateauvillain
-
-
-Sujets de prédilection :
- - les gens, photographie humaniste (cartier-bresson)
