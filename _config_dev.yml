@@ -1,0 +1,30 @@
+
+photo_manager :
+  enabled: true
+  images_path: /img
+  raw_images_path: /photo_manager
+
+  tasks:
+
+    metadatas: # was photoMetadata
+      enabled: true
+      set_copyright: true
+      set_author: true
+      author: David Jacquel
+      prompted_metadatas:
+       - title
+      # - location
+
+    watermark:
+      enabled: false
+      watermark_file: /img/watermark.svg
+
+    signature:
+      enabled: false
+      signature_file: /img/logo-dj.svg
+
+    resize:
+      enabled: false
+
+    post:
+      enabled: false

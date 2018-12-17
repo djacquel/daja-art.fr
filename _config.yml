@@ -80,21 +80,5 @@ exclude:
   - node_modules/spectre.css
   - node_modules/lightgallery.js/lib
   - node_modules/lightgallery.js/src
-
-
-photo_worflow_manager :
-  enabled: true
-  # pending_images_path: path/to/image
-
-  photoMetadata:
-    enabled: false
-    set_copyright: false
-    set_author: false
-    author: David Jacquel
-    prompted_metadatas:
-     - title
-    # - location
-
-  watermark:
-    enabled: true
-    watermark_file: /img/watermark.svg
+  - .idea/*
+  - .idea/**/*
