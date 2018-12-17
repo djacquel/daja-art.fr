@@ -10,10 +10,11 @@ module Jekyll
       require 'mini_exiftool'
       require 'highline'
 
-      def initialize(raw_path, task, index)
+      def initialize(raw_path, task, index, site)
         super
         @cli = HighLine.new
       end
+
 
       def run
         Jekyll.logger.warn "#{self.class}", "START run"
@@ -25,8 +26,13 @@ module Jekyll
         @work_files.each do |file|
 
           photo = MiniExiftool.new file
+
           set_default_metadatas(photo)
-          set_prompted_metadatas(photo)
+
+          unless @task_config['prompted_metadatas'].nil?
+            set_prompted_metadatas(photo)
+          end
+
           save_changes(photo)
 
           # @todo: optionally remove source files

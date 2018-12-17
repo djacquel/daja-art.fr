@@ -4,11 +4,12 @@ module Jekyll
 
     module Task
 
-      def initialize(raw_path, task, index)
+      def initialize(raw_path, task, index, site)
         @current_path = raw_path + '/' + index.to_s
         @result_path  = raw_path + '/' + (index+1).to_s
         @task_name = task.first
         @task_config = task.last
+        @site = site
         Jekyll.logger.warn "#{self.class}", "#{@task_name} initialized with config : #{@task_config}"
       end
 

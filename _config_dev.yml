@@ -12,19 +12,28 @@ photo_manager :
       set_author: true
       author: David Jacquel
       prompted_metadatas:
-       - title
+      # - title
       # - location
+
+    orientation:
+      enabled: true
+
+    resize:
+      enabled: true
+      sizes:
+        - 1024
+        - 250
+
+    signature:
+      enabled: true
+      signature_file: /img/signature-david-jacquel.svg
+
+    tags:
+      enabled: false
 
     watermark:
       enabled: false
       watermark_file: /img/watermark.svg
-
-    signature:
-      enabled: false
-      signature_file: /img/logo-dj.svg
-
-    resize:
-      enabled: false
 
     post:
       enabled: false

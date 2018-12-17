@@ -20,17 +20,25 @@ module Jekyll
             "author"=> "Not set",
             "prompted_metadatas"=> ["title"]
           },
+          "orientation"=> {
+              "enabled"=> false
+          },
+          "resize"=> {
+              "enabled"=> false,
+              "sizes"=>[1024, 250]
+          },
+          "signature"=> {
+              "enabled"=> false,
+              "signature_file"=> "/img/logo-dj.svg"
+          },
+          "tags"=> {
+              "enabled"=> false,
+          },
           "watermark"=> {
             "enabled"=> false,
             "watermark_file"=> "/img/watermark.svg"
           },
-          "signature"=> {
-            "enabled"=> false,
-            "signature_file"=> "/img/logo-dj.svg"
-          },
-          "resize"=> {
-            "enabled"=> false
-          },
+
           "post"=> {
             "enabled"=> false
           }
@@ -70,7 +78,7 @@ module Jekyll
           className = "Task#{task.first.capitalize}"
           taskClass = Jekyll::PhotoManager.const_get(className)
 
-          current_task = taskClass.new(@raw_path, task, index)
+          current_task = taskClass.new(@raw_path, task, index, @site)
           current_task.run
         }
       end
