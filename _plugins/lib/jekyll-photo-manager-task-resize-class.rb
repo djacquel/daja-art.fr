@@ -31,15 +31,12 @@ module Jekyll
       def resize(file)
         photo = MiniMagick::Image.new(file)
 
-        original_width = photo[:width]
-        original_height = photo[:height]
-
         sizes = @task_config['sizes']
 
         sizes.each do |size|
           # resize image
           photo.resize("#{size}x#{size}>")
-          photo.quality(50)
+          photo.quality(@task_config['quality'])
           # generate a name
           original_filename = File.basename(file, '.*')
           extension = File.extname(file).delete('.')
@@ -51,7 +48,7 @@ module Jekyll
         end
 
         # delete work image
-
+        File.delete file
       end
 
     end

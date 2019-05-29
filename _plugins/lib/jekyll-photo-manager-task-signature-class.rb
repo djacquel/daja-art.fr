@@ -11,11 +11,6 @@ module Jekyll
       def initialize(raw_path, task, index, site)
         super
         @cli = HighLine.new
-
-        signature_path = File.join(@site.source,
-                                   @task_config['signature_file'])
-
-        @signature_file = MiniMagick::Image.new(signature_path)
       end
 
       def run
@@ -24,8 +19,10 @@ module Jekyll
         copy_files
 
         @work_files = get_files(@result_path)
-
+        signature_path = File.join(@site.source,
+                                   @task_config['signature_file'])
         @work_files.each do |file|
+          @signature_file = MiniMagick::Image.open(signature_path)
           add_signature file
           # @todo: optionally remove source files
         end
@@ -38,19 +35,36 @@ module Jekyll
         photo = MiniMagick::Image.new file
 
         # needed to calculate signature size
-        w = photo[:width]
-        h = photo[:height]
+
+        @original_width = photo[:width]
+        @original_height = photo[:height]
+
+        set_dimension(photo)
+
+        unless @max_dimension < @task_config['min_picture_size']
+          sign(photo)
+        end
+
+      end
+
+      def sign(photo)
 
         # @todo calculate signature size
+        ratio = @original_width.to_f / @task_config['min_picture_size'].to_f
+        percent = "#{@task_config['signature_ratio'] * ratio}%"
+
+        @signature_file.resize(percent, '-background', 'none')
 
         result = photo.composite(@signature_file) do |c|
           c.compose "Over"    # OverCompositeOp
-          c.watermark "70%"
+          c.watermark "50%"
           c.gravity "SouthEast"
-          c.geometry "+50+200" # copy second_image onto first_image from (20, 20)
+          c.geometry "+10+10" # copy second_image onto first_image from (20, 20)
           c.background "none"
         end
+
         result.write photo.path
+
       end
 
     end

@@ -1,13 +1,13 @@
 
 photo_manager :
-  enabled: true
+  enabled: false
   images_path: /img
   raw_images_path: /photo_manager
 
   tasks:
 
     metadatas: # was photoMetadata
-      enabled: true
+      enabled: false
       set_copyright: true
       set_author: true
       author: David Jacquel
@@ -20,13 +20,25 @@ photo_manager :
 
     resize:
       enabled: true
+      quality: 50
       sizes:
         - 1024
+        - 700
+        - 500
         - 250
 
     signature:
       enabled: true
       signature_file: /img/signature-david-jacquel.svg
+
+      signature: David Jacquel - daja-art.fr
+
+      signature-fill: black
+      signature-stroke: white
+
+      min_picture_size: 500 # photos that have a width or/and height inferior of
+                            # this limit are not signed
+      signature_ratio: 12
 
     tags:
       enabled: false
