@@ -16,13 +16,12 @@ Jekyll::Hooks.register :site, :after_init do |site|
     Jekyll.logger.warn "PhotoManager:", "No custom configuration found. Please, refer to documentation."
   else
     if !site.config['photo_manager']['enabled']
-      Jekyll.logger.warn "PhotoManager:", "photo_worflow_manager NOT ENABLED in config !"
+      Jekyll.logger.warn "PhotoManager:", "photo_manager NOT ENABLED in config !"
     else
       # runs if config ok
       Jekyll::PhotoManager::Manager.new(site).run
     end
   end
-
   Jekyll.logger.info "+++++++++++++++++ END Photo Manager"
 end
 

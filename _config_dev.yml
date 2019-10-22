@@ -1,11 +1,11 @@
 
 photo_manager :
   enabled: true
-  images_path: /img
-  raw_images_path: /photo_manager
+#  images_path: "/photo_manager"
+#  raw_images_path: "/raw"
+#  ressources_path: "/ressources"
 
   tasks:
-
     metadatas: # was photoMetadata
       enabled: true
       set_copyright: true
@@ -16,16 +16,16 @@ photo_manager :
       # - location
 
     orientation:
-      enabled: true
+      enabled: false
 
     resize:
-      enabled: true
+      enabled: false
       sizes:
         - 1024
         - 250
 
     signature:
-      enabled: true
+      enabled: false
       signature_file: /img/signature-david-jacquel.svg
 
     tags:

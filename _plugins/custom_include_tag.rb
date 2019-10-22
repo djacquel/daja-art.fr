@@ -16,7 +16,7 @@ module Jekyll
         debug = site.config['comment_includes']
 
         if debug
-          file.slice!(site.source)
+          # file.slice!(site.source)
           fileContent = "<!-- #{file} -->\n#{fileContent}<!-- End #{file} -->"
         end
 

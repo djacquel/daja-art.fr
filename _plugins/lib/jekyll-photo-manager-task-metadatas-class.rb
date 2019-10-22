@@ -10,11 +10,10 @@ module Jekyll
       require 'mini_exiftool'
       require 'highline'
 
-      def initialize(raw_path, task, index, site)
+      def initialize(images_origin_path, images_destination_path, task, site)
         super
         @cli = HighLine.new
       end
-
 
       def run
         Jekyll.logger.warn "#{self.class}", "START run"

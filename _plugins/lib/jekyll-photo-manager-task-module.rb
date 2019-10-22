@@ -4,9 +4,9 @@ module Jekyll
 
     module Task
 
-      def initialize(raw_path, task, index, site)
-        @current_path = raw_path + '/' + index.to_s
-        @result_path  = raw_path + '/' + (index+1).to_s
+      def initialize(images_origin_path, images_destination_path, task, site)
+        @current_path = images_origin_path
+        @result_path  = images_destination_path
         @task_name = task.first
         @task_config = task.last
         @site = site

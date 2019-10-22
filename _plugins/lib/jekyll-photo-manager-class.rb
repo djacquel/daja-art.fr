@@ -9,9 +9,11 @@ module Jekyll
     class Manager
 
       DEFAULT = {
-        "enabled"=> true,
-        "images_path"=> "/img",
+        "enabled"=> false,
+        "images_path"=> "/_photo_manager",
         "raw_images_path"=> "/raw",
+        "ressources_path" => "/ressources",
+
         "tasks"=> {
           "metadatas"=> {
             "enabled"=> false,
@@ -51,24 +53,30 @@ module Jekyll
       #
       def initialize(site)
         @site   = site
-        @config = DEFAULT.deep_merge(site.config['photo_manager'])
+        @config = DEFAULT.deep_merge(site.config['photo_manager']).freeze
+        @pm_images_root_path = File.join(site.source, @config['images_path'])
 
-        @raw_path = File.join(site.source, @config['images_path'], @config['raw_images_path'])
-
-        unless Dir.exist?(@raw_path)
+        @pm_images_raw_path = File.join(@pm_images_root_path, @config['raw_images_path'])
+        unless Dir.exist?(@pm_images_raw_path)
           raise Errors::FatalException,
-                "Raw photos folder '#{@raw_path}' doesn't exist. Please create it."
+                "Raw photos folder '#{@pm_images_raw_path}' doesn't exist. Please create it."
         end
-        @enabled_tasks = getEnabledTasks
 
+        @enabled_tasks = getEnabledTasks
         if @enabled_tasks.empty?
           Jekyll.logger.warn "#{self.class}", "No module enabled. /
                Enable at least one by setting enabled to true in the config."
         end
       end
 
-      # runs on all tasks on raw photos
+      # runs all enabled tasks on raw photos
       def run
+        unless @config["enabled"]
+          Jekyll.logger.warn "#{self.class}", "Photo Manager is disabled./
+ Read the doc to learn how to enable it !"
+          return
+        end
+
         # task is an array like [ "taskname", {configVar=>{},...} ]
         @enabled_tasks.each_with_index { |task, index|
           Jekyll.logger.info "#{self.class}", "Init task : #{task.first} with config : #{task.last}"
@@ -78,7 +86,18 @@ module Jekyll
           className = "Task#{task.first.capitalize}"
           taskClass = Jekyll::PhotoManager.const_get(className)
 
-          current_task = taskClass.new(@raw_path, task, index, @site)
+          if index == 0
+            images_origin_path = @pm_images_raw_path
+          else
+            images_origin_path = File.join(@pm_images_root_path, --index.to_s)
+          end
+
+          images_destination_path = File.join(@pm_images_root_path, index.to_s)
+
+          current_task = taskClass.new(images_origin_path,
+                                       images_destination_path,
+                                       task,
+                                       @site)
           current_task.run
         }
       end
