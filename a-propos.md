@@ -10,5 +10,5 @@ Regarder, donner à voir, figer ce temps qui passe.
 
 Plus de quarante ans maintenant que je photographie avec avidité ce monde qui est le notre.
 
-A plus que jamais je pense qu'il est important de témoigner, pour que le futur n'oublie pas.
+A plus que jamais, je pense qu'il est important d'avoir de la mémoire.'
 
